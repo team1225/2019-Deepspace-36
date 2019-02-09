@@ -2,19 +2,19 @@ package org.usfirst.frc1225.DeepSpace36.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc1225.DeepSpace36.Robot;
 
-public class RaiseArm extends Command {
-    public RaiseArm() {
-        requires(Robot.arm);
+public class ShootCargo extends Command {
+    public ShootCargo() {
+        requires(Robot.intake);
+
     }
 
     @Override
     protected void initialize() {
     }
-    
+
     @Override
     protected void execute() {
-        Robot.arm.raise();
-        
+        Robot.intake.out();
     }
 
     @Override
@@ -24,7 +24,7 @@ public class RaiseArm extends Command {
 
     @Override
     protected void end() {
-        Robot.arm.stop();
+        Robot.intake.stop();
     }
 
     @Override

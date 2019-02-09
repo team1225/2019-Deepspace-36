@@ -5,26 +5,26 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.PIDSource;
-import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+
+import javax.swing.plaf.TreeUI;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
-import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.Solenoid;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import org.usfirst.frc1225.DeepSpace36.RobotMap;
 
 
-public class Intake extends Subsystem {
-    private DoubleSolenoid wrist;
-    private DoubleSolenoid ejector;
+public class Ejector extends Subsystem {
+    private Solenoid ejector;
     private CANSparkMax rollers;
 
 
-    public Intake() {
-        wrist = new DoubleSolenoid(0, 0, 1);
-        addChild("Wrist",wrist);
-        
-        ejector = new DoubleSolenoid(1, 2, 3);
+    public Ejector() {
+        ejector = new Solenoid(
+            RobotMap.PCMCANId,
+            3
+            );
         addChild("Ejector",ejector);
         
         rollers = new CANSparkMax(RobotMap.IntakeCANId, MotorType.kBrushless);
@@ -39,26 +39,12 @@ public class Intake extends Subsystem {
     public void periodic() {
     }
 
-    public void in() {
-        rollers.set(-1);
-    }
-
-    public void out() {
-        rollers.set(1);    
+    public void eject() {
+        ejector.set(true);
     }
 
     public void stop() {
-        rollers.set(0);
+        ejector.set(false);
     }
-
-    public void DropIntake() {
-        wrist.set(DoubleSolenoid.Value.kForward);
-    }
-
-    public void RaiseIntake() {
-        wrist.set(DoubleSolenoid.Value.kReverse);
-    }
-
     
-
 }

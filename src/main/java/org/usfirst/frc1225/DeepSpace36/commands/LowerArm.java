@@ -2,8 +2,8 @@ package org.usfirst.frc1225.DeepSpace36.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc1225.DeepSpace36.Robot;
 
-public class RaiseArm extends Command {
-    public RaiseArm() {
+public class LowerArm extends Command {
+    public LowerArm() {
         requires(Robot.arm);
     }
 
@@ -13,7 +13,7 @@ public class RaiseArm extends Command {
     
     @Override
     protected void execute() {
-        Robot.arm.raise();
+        Robot.arm.lower();
         
     }
 

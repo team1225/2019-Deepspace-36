@@ -15,7 +15,7 @@ import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
-import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.drive.MecanumDrive;
 
 public class DriveTrain extends Subsystem {
 
@@ -24,7 +24,7 @@ public class DriveTrain extends Subsystem {
     private Encoder quadratureEncoder2;
     private Encoder quadratureEncoder3;
     private Encoder quadratureEncoder4;
-    private DifferentialDrive drive;
+    private MecanumDrive drive;
 
     private CANSparkMax rightFront;
     private CANSparkMax leftFront;
@@ -61,10 +61,7 @@ public class DriveTrain extends Subsystem {
         rightRear = new CANSparkMax(RobotMap.rightRearMotorCANId, MotorType.kBrushless);
         leftRear = new CANSparkMax(RobotMap.leftRearMotorCANId, MotorType.kBrushless);
         
-        SpeedControllerGroup leftMotorGroup = new SpeedControllerGroup(leftFront, leftRear);
-        SpeedControllerGroup rightMotorGroup = new SpeedControllerGroup(rightFront, rightRear);
-
-        drive = new DifferentialDrive(leftMotorGroup, rightMotorGroup);
+        drive = new MecanumDrive(leftFront, leftRear, rightFront, rightRear);
         addChild("Drive",drive);
         drive.setSafetyEnabled(true);
         drive.setExpiration(0.1);
@@ -81,11 +78,11 @@ public class DriveTrain extends Subsystem {
     }
 
     public void TeleopDrive(Joystick joystick) {
-        drive.arcadeDrive(joystick.getY(), joystick.getX());
+        drive.driveCartesian(joystick.getX(), joystick.getY(), joystick.getZ());
     }
 
     public void Stop() {
-        drive.arcadeDrive(0, 0);
+        drive.driveCartesian(0, 0, 0);
     }
 }
 

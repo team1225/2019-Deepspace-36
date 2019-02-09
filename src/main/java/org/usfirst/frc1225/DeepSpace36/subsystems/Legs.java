@@ -30,6 +30,7 @@ public class Legs extends Subsystem {
 
     @Override
     public void initDefaultCommand() {
+        // setDefaultCommand();
     }
 
     @Override
