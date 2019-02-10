@@ -21,7 +21,11 @@ public final class RobotMap {
     public static final double armD = 0.0;
     public static final double armF = 0.0;
     public static final double armTolerance = 0.0027; // equal to about one degree or one inch at 4 feet
-
+    public static final double armCargoLength = 53.0;
+    public static final double armHatchLength = 49.0;
+    public static final double armCargoCenter = 7.5;
+    public static final double armHatchCenter = 9.0;
+    
     // Intake
     public static final int IntakeCANId = 9;
     public static final int IntakeJointCANId = 8;
@@ -38,12 +42,12 @@ public final class RobotMap {
     public static final int LowerWristChannel = 1;
     
     //  heights
-    public static final double HatchPanel1 = 1.0;
-    public static final double HatchPanel2 = 2.0;
-    public static final double HatchPanel3 = 3.0;
-    public static final double Cargo1 = 1.1;
-    public static final double Cargo2 = 2.2;
-    public static final double Cargo3 = 3.3;
+    public static final double HatchPanel1 = 19.0;
+    public static final double HatchPanel2 = 47.0;
+    public static final double HatchPanel3 = 75.0;
+    public static final double Cargo1 = 27.5;
+    public static final double Cargo2 = 55.5;
+    public static final double Cargo3 = 83.5;
 
     // Joystick buttons
     public static final int DRIVER_CONTROLLER = 0;
