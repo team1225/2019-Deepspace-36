@@ -60,9 +60,9 @@ public class OI {
         
         joystickButton1 = new JoystickButton(joystick1, 1);
         joystickButton1.whenPressed(new RaiseArm());
-        joystickButton2 = new JoystickButton(joystick1, RobotMap.leftShoulder);
+        joystickButton2 = new JoystickButton(joystick1, RobotMap.LEFT_BUMPER);
         joystickButton2.whileHeld(new GrabCargo());
-        joystickButton3 = new JoystickButton(joystick1, RobotMap.rightShoulder);
+        joystickButton3 = new JoystickButton(joystick1, RobotMap.RIGHT_BUMPER);
         joystickButton3.whileHeld(new ShootCargo());
 
         // SmartDashboard Buttons

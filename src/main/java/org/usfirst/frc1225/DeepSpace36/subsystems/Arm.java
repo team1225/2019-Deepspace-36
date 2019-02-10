@@ -13,9 +13,15 @@ public class Arm extends PIDSubsystem {
     private CANEncoder m_encoder;
 
     public Arm() {
-        super("Arm", 1.0, 0.0, 0.0);
-        setAbsoluteTolerance(0.2);
+        super("Arm", 
+            RobotMap.armP,
+            RobotMap.armI,
+            RobotMap.armD,
+            RobotMap.armF
+        );
+        setAbsoluteTolerance(RobotMap.armTolerance);
         getPIDController().setContinuous(false);
+        getPIDController().setOutputRange(RobotMap.armMinOutput, RobotMap.armMaxOutput);
         getPIDController().setName("Arm", "Arm Controller");
         LiveWindow.add(getPIDController());
 

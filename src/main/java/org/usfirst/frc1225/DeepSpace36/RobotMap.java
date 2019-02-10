@@ -10,8 +10,17 @@ public final class RobotMap {
     public static final int rightMidMotorCANId = 10;
     public static final int leftMidMotorCANId = 9;  
 
+    public static final double rampRate = 0;
+
     // Arm
     public static final int ArmCANId = 10;
+    public static final double armMaxOutput = 1.0;
+    public static final double armMinOutput = -1.0;
+    public static final double armP = 0.035;
+    public static final double armI = 0.0006;
+    public static final double armD = 0.0;
+    public static final double armF = 0.0;
+    public static final double armTolerance = 0.0027; // equal to about one degree or one inch at 4 feet
 
     // Intake
     public static final int IntakeCANId = 9;
@@ -37,16 +46,25 @@ public final class RobotMap {
     public static final double Cargo3 = 3.3;
 
     // Joystick buttons
-    public static final int A = 1;
-    public static final int B = 2;
-    public static final int X = 3;
-    public static final int Y = 4;
-    public static final int leftShoulder = 5;
-    public static final int rightShoulder = 6;
-    public static final int leftTrigger = 1;
-    public static final int rightTrigger = 1;
-    public static final int dpadUp = 1;
-    public static final int dpadDown = 1;
-    public static final int dpadLeft = 1;
-    public static final int dpadRight = 1;
+    public static final int DRIVER_CONTROLLER = 0;
+	public static final int OPERATOR_CONTROLLER = 1;
+
+	public static final int BUTTON_A = 1;
+	public static final int BUTTON_B = 2;
+	public static final int BUTTON_X = 3;
+	public static final int BUTTON_Y = 4;
+	public static final int LEFT_BUMPER = 5;
+	public static final int RIGHT_BUMPER = 6;
+	public static final int BACK_BUTTON = 7;
+	public static final int START_BUTTON = 8;
+	public static final int LEFT_STICK_BUTTON = 9;
+	public static final int RIGHT_STICK_BUTTON = 10;
+	
+	public static final int LEFT_STICK_X = 0;
+	public static final int LEFT_STICK_Y = 1;
+	public static final int RIGHT_STICK_Y = 5;
+	public static final int RIGHT_STICK_X = 4;
+	
+	public static final int LEFT_TRIGGER = 2;
+	public static final int RIGHT_TRIGGER = 3;
 }
