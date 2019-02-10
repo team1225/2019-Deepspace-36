@@ -10,11 +10,10 @@ package org.usfirst.frc1225.DeepSpace36.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc1225.DeepSpace36.Robot;
 
-public class Eject extends Command {
-  public Eject() {
+public class RetractEjector extends Command {
+  public RetractEjector() {
     // Use requires() here to declare subsystem dependencies
     requires(Robot.ejector);
-    setTimeout(0.4);
   }
 
   // Called just before this Command runs the first time
@@ -25,25 +24,23 @@ public class Eject extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.ejector.eject();
+    Robot.ejector.stop();
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return isTimedOut();
+    return false;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.ejector.stop();
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    end();
   }
 }

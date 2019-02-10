@@ -5,7 +5,7 @@ import org.usfirst.frc1225.DeepSpace36.RobotMap;
 import org.usfirst.frc1225.DeepSpace36.commands.*;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.AnalogGyro;
+import com.analog.adis16448.frc.ADIS16448_IMU;
 import edu.wpi.first.wpilibj.Joystick;
 
 import com.revrobotics.CANEncoder;
@@ -15,7 +15,7 @@ import edu.wpi.first.wpilibj.drive.MecanumDrive;
 
 public class DriveTrain extends Subsystem {
 
-    private AnalogGyro analogGyro1;
+    private ADIS16448_IMU gyro;
     private CANEncoder leftFrontEncoder;
     private CANEncoder leftRearEncoder;
     private CANEncoder rightFrontEncoder;
@@ -28,9 +28,8 @@ public class DriveTrain extends Subsystem {
     private CANSparkMax leftRear;
 
     public DriveTrain() {
-        analogGyro1 = new AnalogGyro(0);
-        addChild("AnalogGyro 1",analogGyro1);
-        analogGyro1.setSensitivity(0.007);
+        gyro = new ADIS16448_IMU();
+        addChild("Gyro",gyro);
         
         rightFront = new CANSparkMax(RobotMap.rightFrontMotorCANId, MotorType.kBrushless);
         leftFront = new CANSparkMax(RobotMap.leftFrontMotorCANId, MotorType.kBrushless);
@@ -64,7 +63,7 @@ public class DriveTrain extends Subsystem {
     }
 
     public void TeleopDrive(Joystick joystick) {
-        drive.driveCartesian(joystick.getX(), joystick.getY(), joystick.getZ());
+        drive.driveCartesian(joystick.getX(), joystick.getY(), joystick.getZ(), gyro.getAngleZ());
     }
 
     public void Stop() {
