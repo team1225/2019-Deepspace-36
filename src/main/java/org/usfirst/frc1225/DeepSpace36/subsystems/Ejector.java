@@ -19,7 +19,6 @@ public class Ejector extends Subsystem {
     private Solenoid ejector;
     private CANSparkMax rollers;
 
-
     public Ejector() {
         ejector = new Solenoid(
             RobotMap.PCMCANId,
