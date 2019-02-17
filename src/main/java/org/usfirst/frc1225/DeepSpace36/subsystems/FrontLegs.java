@@ -3,31 +3,27 @@ package org.usfirst.frc1225.DeepSpace36.subsystems;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+
+import org.usfirst.frc1225.DeepSpace36.RobotMap;
+import org.usfirst.frc1225.DeepSpace36.commands.RetractFrontLegs;
+
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 
-public class Legs extends Subsystem {
+public class FrontLegs extends Subsystem {
     private DoubleSolenoid rightFront;
     private DoubleSolenoid leftFront;
-    private DoubleSolenoid rightRear;
-    private DoubleSolenoid leftRear;
 
-    public Legs() {
-        rightFront = new DoubleSolenoid(6, 0, 1);
+    public FrontLegs() {
+        rightFront = new DoubleSolenoid(RobotMap.PCMCANId1, RobotMap.upleftFrontPistonId, RobotMap.downleftFrontPistonId);
         addChild("RightFront",rightFront);
         
-        leftFront = new DoubleSolenoid(0, 4, 5);
+        leftFront = new DoubleSolenoid(RobotMap.PCMCANId1, RobotMap.uprightFrontPistonId, RobotMap.downrightFrontPistonId);
         addChild("LeftFront",leftFront);
-        
-        rightRear = new DoubleSolenoid(0, 6, 7);
-        addChild("RightRear",rightRear);
-        
-        leftRear = new DoubleSolenoid(1, 0, 1);
-        addChild("LeftRear",leftRear);
     }
 
     @Override
     public void initDefaultCommand() {
-        // setDefaultCommand();
+        // setDefaultCommand(new RetractFrontLegs());
     }
 
     @Override
@@ -44,5 +40,17 @@ public class Legs extends Subsystem {
 
     public void rightFrontOff() {
         rightFront.set(Value.kOff);
+    } 
+    
+    public void leftFrontExtend() {
+        leftFront.set(DoubleSolenoid.Value.kForward);
+    }
+
+    public void leftFrontRetract() {
+        leftFront.set(Value.kReverse);
+    }
+
+    public void leftFrontOff() {
+        // leftFront.set(Value.kOff);
     }
 }

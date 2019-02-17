@@ -12,7 +12,7 @@ public class Wrist extends Subsystem {
 
     public Wrist() {
         wrist = new DoubleSolenoid(
-            RobotMap.PCMCANId,
+            RobotMap.PCMCANId2,
             RobotMap.RaiseWristChannel,
             RobotMap.LowerWristChannel
         );

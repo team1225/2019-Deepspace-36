@@ -2,16 +2,16 @@ package org.usfirst.frc1225.DeepSpace36.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc1225.DeepSpace36.Robot;
 
-public class ExtendFrontLegs extends Command {
-    public ExtendFrontLegs() {
-        // setTimeout(5);
-        requires(Robot.frontLegs);
+public class ExtendRearLegs extends Command {
+    public ExtendRearLegs() {
+        // setTimeout(1);
+        requires(Robot.rearLegs);
     }
 
     @Override
     protected void initialize() {
-        Robot.frontLegs.leftFrontExtend();
-        Robot.frontLegs.rightFrontExtend();
+        Robot.rearLegs.leftRearExtend();
+        Robot.rearLegs.rightRearExtend();
     }
 
     @Override
@@ -25,8 +25,9 @@ public class ExtendFrontLegs extends Command {
 
     @Override
     protected void end() {
-        Robot.frontLegs.leftFrontOff();
-        Robot.frontLegs.rightFrontOff();
+        Robot.rearLegs.leftRearOff();
+        Robot.rearLegs.rightRearOff();
+
     }
 
     @Override

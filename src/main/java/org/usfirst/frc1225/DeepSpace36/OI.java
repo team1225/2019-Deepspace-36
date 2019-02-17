@@ -50,30 +50,76 @@ public class OI {
     // until it is finished as determined by it's isFinished method.
     // button.whenReleased(new ExampleCommand());
 
-    public JoystickButton joystickButton1;
-    public JoystickButton joystickButton2;
-    public JoystickButton joystickButton3;
-    public Joystick joystick1;
+    public JoystickButton driverButton1;
+    public JoystickButton driverButton2;
+    public JoystickButton driverButton3;
+    public JoystickButton driverButton4;
+    public JoystickButton driverButton5;
+    public JoystickButton driverButton6;
+    public JoystickButton driverButton7;
+    public JoystickButton driverButton8;
+    public JoystickButton driverButton9;
+
+    public JoystickButton operatorButton1;
+    public JoystickButton operatorButton2;
+    public JoystickButton operatorButton3;
+    public JoystickButton operatorButton4;
+    public JoystickButton operatorButton5;
+    public JoystickButton operatorButton6;
+    public JoystickButton operatorButton7;
+    public JoystickButton operatorButton8;
+    public JoystickButton operatorButton9;
+    public Joystick driverJoystick;
+    public Joystick operatorJoystick;
 
     public OI() {
-        joystick1 = new Joystick(0);
+        driverJoystick = new Joystick(0);
+        operatorJoystick = new Joystick(1);
         
-        joystickButton1 = new JoystickButton(joystick1, 1);
-        joystickButton1.whenPressed(new RaiseArm());
-        joystickButton2 = new JoystickButton(joystick1, RobotMap.LEFT_BUMPER);
-        joystickButton2.whileHeld(new GrabCargo());
-        joystickButton3 = new JoystickButton(joystick1, RobotMap.RIGHT_BUMPER);
-        joystickButton3.whileHeld(new ShootCargo());
+        // Driver controls
+        
+        // joystickButton3 = new JoystickButton(driverJoystick, RobotMap.LEFT_BUMPER);
+        // joystickButton3.whileHeld(new GrabCargo());
+        // joystickButton4 = new JoystickButton(driverJoystick, RobotMap.RIGHT_BUMPER);
+        // joystickButton4.whileHeld(new ShootCargo());
 
-        // SmartDashboard Buttons
-        SmartDashboard.putData("Autonomous Command", new AutonomousCommand());
-        SmartDashboard.putData("GrabCargo", new GrabCargo());
-        SmartDashboard.putData("RaiseArm", new RaiseArm());
-        SmartDashboard.putData("ExtendFrontLegs", new ExtendFrontLegs());
-        SmartDashboard.putData("RetractFrontLegs", new RetractFrontLegs());
+        // joystickButton5 = new JoystickButton(driverJoystick, RobotMap.BUTTON_X);
+        // joystickButton5.whenPressed(new ExtendAllLegs());
+        // joystickButton5 = new JoystickButton(driverJoystick, RobotMap.BUTTON_Y);
+        // joystickButton5.whileHeld(new RetractRearLegs());
+        // joystickButton5.whileHeld(new RetractFrontLegs());
+
+        // // Operator Controls
+        operatorButton1 = new JoystickButton(operatorJoystick, RobotMap.BUTTON_A);
+        operatorButton1.whileHeld(new RaiseArm());
+        operatorButton2 = new JoystickButton(operatorJoystick, RobotMap.BUTTON_B);
+        operatorButton2.whileHeld(new LowerArm());
+        operatorButton3 = new JoystickButton(operatorJoystick, RobotMap.BUTTON_X);
+        operatorButton3.whenPressed(new AimArm(RobotMap.Cargo1, true));
+        operatorButton4 = new JoystickButton(operatorJoystick, RobotMap.BUTTON_Y);
+        operatorButton4.whenPressed(new AimArm(RobotMap.Cargo2, true));
+        operatorButton5 = new JoystickButton(operatorJoystick, RobotMap.RIGHT_STICK_BUTTON);
+        operatorButton5.whenPressed(new AimArm(RobotMap.Cargo3, true));
+        operatorButton6 = new JoystickButton(operatorJoystick, RobotMap.RIGHT_STICK_BUTTON);
+        operatorButton6.whenPressed(new AimArm(RobotMap.Cargo3, true));
+        operatorButton7 = new JoystickButton(operatorJoystick, RobotMap.RIGHT_STICK_BUTTON);
+        operatorButton7.whenPressed(new AimArm(RobotMap.Cargo3, true));
+        driverButton1 = new JoystickButton(driverJoystick, RobotMap.BUTTON_A);
+        driverButton1.whenPressed(new ExtendAllLegs());
+        driverButton1 = new JoystickButton(driverJoystick, RobotMap.BUTTON_B);
+        driverButton1.whenPressed(new RetractRearLegs());
+        driverButton1 = new JoystickButton(driverJoystick, RobotMap.BUTTON_X);
+        driverButton1.whenPressed(new RetractFrontLegs());
+
+        // // SmartDashboard Buttons
+        // SmartDashboard.putData("Autonomous Command", new AutonomousCommand());
+        // SmartDashboard.putData("GrabCargo", new GrabCargo());
+        // SmartDashboard.putData("RaiseArm", new RaiseArm());
+        // SmartDashboard.putData("ExtendFrontLegs", new ExtendFrontLegs());
+        // SmartDashboard.putData("RetractFrontLegs", new RetractFrontLegs());
     }
 
-    public Joystick getJoystick1() {
-        return joystick1;
+    public Joystick getdriverJoystick() {
+        return driverJoystick;
     }
 }

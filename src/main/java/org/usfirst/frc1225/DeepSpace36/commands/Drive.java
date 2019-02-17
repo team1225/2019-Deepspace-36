@@ -15,7 +15,7 @@ public class Drive extends Command {
 
   @Override
   protected void execute() {
-    Robot.driveTrain.TeleopDrive(Robot.oi.getJoystick1());
+    Robot.driveTrain.TeleopDrive(Robot.oi.getdriverJoystick());
   }
 
   @Override

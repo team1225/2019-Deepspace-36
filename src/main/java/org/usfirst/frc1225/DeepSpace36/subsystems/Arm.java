@@ -7,6 +7,7 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANEncoder;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import com.revrobotics.CANSparkMax.IdleMode;
 
 public class Arm extends PIDSubsystem {
     private CANSparkMax m_motor;
@@ -27,6 +28,7 @@ public class Arm extends PIDSubsystem {
 
         m_motor = new CANSparkMax(RobotMap.ArmCANId, MotorType.kBrushless);
         m_encoder = m_motor.getEncoder();
+        m_motor.setIdleMode(IdleMode.kBrake);
     }
 
     @Override

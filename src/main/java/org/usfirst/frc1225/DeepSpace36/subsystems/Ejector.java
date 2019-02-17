@@ -3,19 +3,16 @@ package org.usfirst.frc1225.DeepSpace36.subsystems;
 import org.usfirst.frc1225.DeepSpace36.commands.*;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.command.Subsystem;
-
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Solenoid;
 import org.usfirst.frc1225.DeepSpace36.RobotMap;
 
 
 public class Ejector extends Subsystem {
-    private Solenoid ejector;
+    private DoubleSolenoid ejector;
 
     public Ejector() {
-        ejector = new Solenoid(
-            RobotMap.PCMCANId,
-            3
-            );
+        ejector = new DoubleSolenoid(RobotMap.PCMCANId2, RobotMap.EjectChannel, RobotMap.RetractChannel);
         addChild("Ejector",ejector);
     }
 
@@ -29,11 +26,11 @@ public class Ejector extends Subsystem {
     }
 
     public void eject() {
-        ejector.set(true);
+        ejector.set(DoubleSolenoid.Value.kForward);
     }
 
     public void stop() {
-        ejector.set(false);
+        ejector.set(DoubleSolenoid.Value.kReverse);
     }
     
 }

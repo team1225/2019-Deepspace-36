@@ -4,13 +4,13 @@ import org.usfirst.frc1225.DeepSpace36.Robot;
 
 public class RetractFrontLegs extends Command {
     public RetractFrontLegs() {
-        requires(Robot.legs);
-        setTimeout(1);
+        requires(Robot.frontLegs);
     }
 
     @Override
     protected void initialize() {
-        Robot.legs.rightFrontRetract();
+        Robot.frontLegs.leftFrontRetract();
+        Robot.frontLegs.rightFrontRetract();
     }
 
     @Override
@@ -19,16 +19,14 @@ public class RetractFrontLegs extends Command {
 
     @Override
     protected boolean isFinished() {
-        return isTimedOut();
+        return false;
     }
 
     @Override
     protected void end() {
-        Robot.legs.rightFrontOff();
     }
 
     @Override
     protected void interrupted() {
-        end();
     }
 }

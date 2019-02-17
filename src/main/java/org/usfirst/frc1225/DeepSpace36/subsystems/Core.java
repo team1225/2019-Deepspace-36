@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.PIDSource;
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Core extends Subsystem {
     private Compressor compressor1;
@@ -30,7 +31,7 @@ public class Core extends Subsystem {
 
     @Override
     public void periodic() {
-
+        SmartDashboard.putNumber("Pressure", ((250 * pressureGauge.getVoltage()) / 5) - 25);
     }
 }
 

@@ -16,13 +16,11 @@ public class Intake extends Subsystem {
 
 
     public Intake() {
-        wrist = new DoubleSolenoid(0, 0, 1);
+        wrist = new DoubleSolenoid(RobotMap.PCMCANId2, RobotMap.LowerWristChannel, RobotMap.RaiseWristChannel);
         addChild("Wrist",wrist);
+    
         
-        ejector = new DoubleSolenoid(1, 2, 3);
-        addChild("Ejector",ejector);
-        
-        rollers = new CANSparkMax(RobotMap.IntakeCANId, MotorType.kBrushless);
+        // rollers = new CANSparkMax(RobotMap.IntakeCANId, MotorType.kBrushless);
     }
 
     @Override
@@ -35,23 +33,23 @@ public class Intake extends Subsystem {
     }
 
     public void in() {
-        rollers.set(-1);
+        // rollers.set(-1);
     }
 
     public void out() {
-        rollers.set(1);    
+        // rollers.set(1);
     }
 
     public void stop() {
-        rollers.set(0);
+        // rollers.set(0);
     }
 
     public void DropIntake() {
-        wrist.set(DoubleSolenoid.Value.kForward);
+        // wrist.set(DoubleSolenoid.Value.kForward);
     }
 
     public void RaiseIntake() {
-        wrist.set(DoubleSolenoid.Value.kReverse);
+        // wrist.set(DoubleSolenoid.Value.kReverse);
     }
 
     

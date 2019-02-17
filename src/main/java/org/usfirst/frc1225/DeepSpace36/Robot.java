@@ -35,7 +35,8 @@ public class Robot extends TimedRobot {
     public static OI oi;
     public static Arm arm;
     public static Intake intake;
-    public static Legs legs;
+    public static FrontLegs frontLegs;
+    public static RearLegs rearLegs;
     public static DriveTrain driveTrain;
     public static Core core;
     public static Ejector ejector;
@@ -48,7 +49,8 @@ public class Robot extends TimedRobot {
     public void robotInit() {
         arm = new Arm();
         intake = new Intake();
-        legs = new Legs();
+        frontLegs = new FrontLegs();
+        rearLegs = new RearLegs();
         driveTrain = new DriveTrain();
         core = new Core();
         ejector = new Ejector();
@@ -63,6 +65,10 @@ public class Robot extends TimedRobot {
         chooser.setDefaultOption("Autonomous Command", new AutonomousCommand());
 
         SmartDashboard.putData("Auto mode", chooser);
+        rearLegs.rightRearRetract();
+        rearLegs.leftRearRetract();
+        frontLegs.rightFrontRetract();
+        frontLegs.leftFrontRetract();
     }
 
     /**

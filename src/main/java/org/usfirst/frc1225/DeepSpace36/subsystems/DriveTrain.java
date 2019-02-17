@@ -6,8 +6,9 @@ import org.usfirst.frc1225.DeepSpace36.commands.*;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import com.analog.adis16448.frc.ADIS16448_IMU;
-import edu.wpi.first.wpilibj.Joystick;
 
+import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.Joystick;
 import com.revrobotics.CANEncoder;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
@@ -26,6 +27,8 @@ public class DriveTrain extends Subsystem {
     private CANSparkMax leftFront;
     private CANSparkMax rightRear;
     private CANSparkMax leftRear;
+    private CANSparkMax rightMid;
+    private CANSparkMax leftMid;
 
     public DriveTrain() {
         gyro = new ADIS16448_IMU();
@@ -35,16 +38,23 @@ public class DriveTrain extends Subsystem {
         leftFront = new CANSparkMax(RobotMap.leftFrontMotorCANId, MotorType.kBrushless);
         rightRear = new CANSparkMax(RobotMap.rightRearMotorCANId, MotorType.kBrushless);
         leftRear = new CANSparkMax(RobotMap.leftRearMotorCANId, MotorType.kBrushless);
-        
-        leftRear.setRampRate(RobotMap.rampRate);
-        leftFront.setRampRate(RobotMap.rampRate);
-        rightRear.setRampRate(RobotMap.rampRate);
-        rightFront.setRampRate(RobotMap.rampRate);
+        rightMid = new CANSparkMax(RobotMap.rightRearMotorCANId, MotorType.kBrushless);
+        leftMid = new CANSparkMax(RobotMap.leftRearMotorCANId, MotorType.kBrushless);
 
-        leftFrontEncoder = leftFront.getEncoder();
-        leftRearEncoder = leftRear.getEncoder();
-        rightRearEncoder = rightRear.getEncoder();
+        rightFront.setOpenLoopRampRate(RobotMap.rampRate);
         rightFrontEncoder = rightFront.getEncoder();
+    
+        leftRear.setOpenLoopRampRate(RobotMap.rampRate);
+        leftRearEncoder = leftRear.getEncoder();
+    
+        leftFront.setOpenLoopRampRate(RobotMap.rampRate);
+        leftFrontEncoder = leftFront.getEncoder();
+    
+        rightRear.setOpenLoopRampRate(RobotMap.rampRate);
+        rightRearEncoder = rightRear.getEncoder();
+    
+        rightMid.follow(rightRear);
+        leftMid.follow(leftRear);
 
         drive = new MecanumDrive(leftFront, leftRear, rightFront, rightRear);
         addChild("Drive",drive);
