@@ -4,6 +4,9 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.PIDSource;
+
+import org.usfirst.frc1225.DeepSpace36.RobotMap;
+
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
@@ -15,7 +18,7 @@ public class Core extends Subsystem {
     private AnalogInput pressureGauge;
 
     public Core() {
-        compressor1 = new Compressor(0);
+        compressor1 = new Compressor(RobotMap.PCMCANId1);
         addChild("Compressor 1",compressor1);
         
         powerDistributionPanel1 = new PowerDistributionPanel(0);

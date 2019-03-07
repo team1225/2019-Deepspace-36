@@ -28,7 +28,9 @@ public class Arm extends PIDSubsystem {
 
         m_motor = new CANSparkMax(RobotMap.ArmCANId, MotorType.kBrushless);
         m_encoder = m_motor.getEncoder();
+        m_encoder.setPosition(0);
         m_motor.setIdleMode(IdleMode.kBrake);
+        m_motor.setInverted(true);
     }
 
     @Override
@@ -49,11 +51,11 @@ public class Arm extends PIDSubsystem {
     }
 
     public void raise() {
-        m_motor.set(1);
+        m_motor.set(0.25);
     }
 
     public void lower() {
-        m_motor.set(-1);
+        m_motor.set(-0.15);
     }
 
     public void stop() {

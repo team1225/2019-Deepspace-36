@@ -55,6 +55,7 @@ public class Robot extends TimedRobot {
         core = new Core();
         ejector = new Ejector();
 
+        SmartDashboard.putData(arm);
         // OI must be constructed after subsystems. If the OI creates Commands
         //(which it very likely will), subsystems are not guaranteed to be
         // constructed yet. Thus, their requires() statements may grab null
@@ -82,7 +83,8 @@ public class Robot extends TimedRobot {
 
     @Override
     public void disabledPeriodic() {
-        Scheduler.getInstance().run();
+        // Scheduler.getInstance().removeAll();
+        // Scheduler.getInstance().disable();
     }
 
     @Override
