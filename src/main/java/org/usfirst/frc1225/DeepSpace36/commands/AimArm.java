@@ -10,6 +10,7 @@ public class AimArm extends Command {
     public AimArm(double level, boolean cargo) {
         requires(Robot.arm);
         SmartDashboard.putNumber("LEVEL", level);
+        SmartDashboard.putBoolean("Cargo", cargo);
         double length;
         double center;
         // based on the type of target determine the length of the arm + intake
@@ -21,24 +22,28 @@ public class AimArm extends Command {
             length = RobotMap.armHatchLength;
             center = RobotMap.armHatchCenter;
         }
+
+        double height = level - center;
+        double chord = (height - RobotMap.heightOfAxle) * 2;
+        double angle = Math.toDegrees(Math.acos((Math.pow(chord, 2.0) - Math.pow(length, 2.0) - Math.pow(length, 2.0)) / (-2.0 * length * length)));
         // 2*pi*radius = circumferance --- circumferance / 360 degrees = the length
         // of the arch of one degree
-        double degreesPerInch = 2.0 * 3.1415 * length / 360.0;
+        // double degreesPerInch = 2.0 * 3.1415 * length / 360.0;
         // level = center of target
         // center = center of the intake at the floor
         // the difference between the level and the center is the distance to travel from 
         // the floor to the target
         // degrees to rotate = the amount of travel / degrees per inch
-        double degreesToRotate = (level - center) / degreesPerInch;
+        // double degreesToRotate = (level - center) / degreesPerInch;
         // clicks per degree = total clicks of the encoder / 360 degrees
         double clicksPerDegree = RobotMap.clicksPerRotation / 360.0;
         // convert the degrees to rotate to clicks of the encoder
-        this.m_target = degreesToRotate * clicksPerDegree;
+        this.m_target = angle * clicksPerDegree;
 
         SmartDashboard.putNumber("AimARM/length", length);
         SmartDashboard.putNumber("AimARM/level", level);
         SmartDashboard.putNumber("AimARM/center", center);
-        SmartDashboard.putNumber("AimARM/degreesInch", degreesPerInch);
+        SmartDashboard.putNumber("AimARM/degreesInch", angle);
         SmartDashboard.putNumber("AimARM/SetPoint", m_target);
 
         // set the target

@@ -31,6 +31,7 @@ public class Arm extends PIDSubsystem {
         m_encoder.setPosition(0);
         m_motor.setIdleMode(IdleMode.kBrake);
         m_motor.setInverted(true);
+        
     }
 
     @Override
@@ -40,6 +41,7 @@ public class Arm extends PIDSubsystem {
     @Override
     public void periodic() {
         SmartDashboard.putNumber("Encoder Position", m_encoder.getPosition());
+
     }
 
     protected double returnPIDInput() {

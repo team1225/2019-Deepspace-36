@@ -44,10 +44,10 @@ public final class RobotMap {
 
     // Arm
     public static final double armMaxOutput = 0.25;
-    public static final double armMinOutput = -0.25;
-    public static final double armP = 0.2;
-    public static final double armI = 0.0;  //1e-4;
-    public static final double armD = 0.1;
+    public static final double armMinOutput = -0.125;
+    public static final double armP = 0.250;
+    public static final double armI = 0.000001;  //1e-4;
+    public static final double armD = 0.0;
     public static final double armF = 0.0;
     public static final double armTolerance = 1; // equal to about one degree or one inch at 4 feet
     public static final double armCargoLength = 53.0;
@@ -55,6 +55,7 @@ public final class RobotMap {
     public static final double armCargoCenter = 7.5;
     public static final double armHatchCenter = 9.0;
     public static final double clicksPerRotation = 140;
+    public static final double heightOfAxle = 48;
 
     //  heights
     public static final double HatchPanel1 = 19.0;
