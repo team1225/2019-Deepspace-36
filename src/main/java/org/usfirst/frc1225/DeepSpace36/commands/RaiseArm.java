@@ -25,6 +25,9 @@ public class RaiseArm extends Command {
     @Override
     protected void end() {
         Robot.arm.stop();
+        Command nextCommand =  new AimArm(Robot.arm.getEncoderValue(), true);
+        nextCommand.start();
+        nextCommand.close();
     }
 
     @Override

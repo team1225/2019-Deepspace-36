@@ -58,12 +58,12 @@ public final class RobotMap {
     public static final double heightOfAxle = 48;
 
     //  heights
-    public static final double HatchPanel1 = 19.0;
-    public static final double HatchPanel2 = 47.0;
-    public static final double HatchPanel3 = 75.0;
-    public static final double Cargo1 = 27.5;
-    public static final double Cargo2 = 55.5;
-    public static final double Cargo3 = 83.5;
+    public static final double HatchPanel1 = 6.0; // 19.0;
+    public static final double HatchPanel2 = 20.0; //47.0;
+    public static final double HatchPanel3 = 33.0; // 75.0;
+    public static final double Cargo1 = 10.0; //27.5;
+    public static final double Cargo2 = 25.0; //55.5;
+    public static final double Cargo3 = 40.0; //83.5;
 
     // Joystick buttons
     public static final int DRIVER_CONTROLLER = 0;

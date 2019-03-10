@@ -2,6 +2,7 @@ package org.usfirst.frc1225.DeepSpace36.subsystems;
 
 import org.usfirst.frc1225.DeepSpace36.RobotMap;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANEncoder;
@@ -31,7 +32,6 @@ public class Arm extends PIDSubsystem {
         m_encoder.setPosition(0);
         m_motor.setIdleMode(IdleMode.kBrake);
         m_motor.setInverted(true);
-        
     }
 
     @Override
@@ -62,6 +62,10 @@ public class Arm extends PIDSubsystem {
 
     public void stop() {
         m_motor.set(0);
+    }
+
+    public double getEncoderValue() {
+        return m_encoder.getPosition();
     }
 }
 

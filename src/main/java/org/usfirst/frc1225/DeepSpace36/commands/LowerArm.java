@@ -1,5 +1,7 @@
 package org.usfirst.frc1225.DeepSpace36.commands;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.Scheduler;
+
 import org.usfirst.frc1225.DeepSpace36.Robot;
 
 public class LowerArm extends Command {
@@ -14,7 +16,6 @@ public class LowerArm extends Command {
     @Override
     protected void execute() {
         Robot.arm.lower();
-        
     }
 
     @Override
@@ -25,6 +26,9 @@ public class LowerArm extends Command {
     @Override
     protected void end() {
         Robot.arm.stop();
+        Command nextCommand =  new AimArm(Robot.arm.getEncoderValue(), true);
+        nextCommand.start();
+        nextCommand.close();
     }
 
     @Override

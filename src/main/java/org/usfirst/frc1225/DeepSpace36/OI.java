@@ -17,7 +17,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.*;
 import org.usfirst.frc1225.DeepSpace36.subsystems.*;
-
+import org.usfirst.frc1225.DeepSpace36.utils.*;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -51,62 +51,66 @@ public class OI {
     // until it is finished as determined by it's isFinished method.
     // button.whenReleased(new ExampleCommand());
 
-    public Joystick driverJoystick;
-    public Joystick operatorJoystick;
+    public Joystick driverJoystick = new Joystick(0);
+    public Joystick operatorJoystick = new Joystick(1);
+    Button operatorButton1 = new JoystickButton(operatorJoystick, RobotMap.LEFT_BUMPER),
+    operatorButton2 = new JoystickButton(operatorJoystick, RobotMap.RIGHT_BUMPER),
+    operatorButton3 = new JoystickButton(operatorJoystick, RobotMap.BUTTON_X),
+    operatorButton4 = new JoystickButton(operatorJoystick, RobotMap.BUTTON_Y),
+    operatorButton5 = new JoystickButton(operatorJoystick, RobotMap.BUTTON_B),
+    operatorButton6 = new JoystickButton(operatorJoystick, RobotMap.BUTTON_A),
+    operatorButton7 = new JoystickButton(operatorJoystick, RobotMap.RIGHT_STICK_BUTTON),
+    operatorButton8 = new DPadButton(operatorJoystick, DPadButton.Direction.LEFT),
+    operatorButton9 = new DPadButton(operatorJoystick, DPadButton.Direction.UP),
+    operatorButton10 = new DPadButton(operatorJoystick, DPadButton.Direction.RIGHT),
+    operatorButton11 = new DPadButton(operatorJoystick, DPadButton.Direction.DOWN),
+    driverButton1 = new JoystickButton(driverJoystick, RobotMap.BUTTON_A),
+    driverButton2 = new JoystickButton(driverJoystick, RobotMap.BUTTON_B),
+    driverButton3 = new JoystickButton(driverJoystick, RobotMap.BUTTON_X),
+    driverButton4 = new JoystickButton(driverJoystick, RobotMap.BUTTON_Y),
+    driverButton5 = new DPadButton(driverJoystick, DPadButton.Direction.LEFT),
+    driverButton6 = new DPadButton(driverJoystick, DPadButton.Direction.UP),
+    driverButton7 = new DPadButton(driverJoystick, DPadButton.Direction.RIGHT),
+    driverButton8 = new DPadButton(driverJoystick, DPadButton.Direction.DOWN);
 
     public OI() {
-        driverJoystick = new Joystick(0);
-        operatorJoystick = new Joystick(1);
-            
-        Button operatorButton1 = new JoystickButton(operatorJoystick, RobotMap.BUTTON_A),
-            operatorButton2 = new JoystickButton(operatorJoystick, RobotMap.BUTTON_B),
-            operatorButton3 = new JoystickButton(operatorJoystick, RobotMap.BUTTON_X),
-            operatorButton4 = new JoystickButton(operatorJoystick, RobotMap.BUTTON_Y),
-            operatorButton5 = new JoystickButton(operatorJoystick, RobotMap.RIGHT_STICK_BUTTON),
-            operatorButton6 = new JoystickButton(operatorJoystick, RobotMap.RIGHT_STICK_BUTTON),
-            operatorButton7 = new JoystickButton(operatorJoystick, RobotMap.RIGHT_STICK_BUTTON),
-            driverButton1 = new JoystickButton(driverJoystick, RobotMap.BUTTON_A),
-            driverButton2 = new JoystickButton(driverJoystick, RobotMap.BUTTON_B),
-            driverButton3 = new JoystickButton(driverJoystick, RobotMap.BUTTON_X),
-            driverButton4 = new JoystickButton(driverJoystick, RobotMap.BUTTON_Y);
-        
         // Driver controls
-        // driverButton1.whenPressed(new RetractRearLegs());
-        // driverButton2.whenPressed(new ExtendAllLegs());
-        // driverButton3.whenPressed(new RetractFrontLegs());
-        // driverButton4.whileHeld(new testDrive());
+        driverButton1.whileHeld(new GrabCargo());
+        driverButton2.whileHeld(new ShootCargo());
+        driverButton3.whenPressed(new Eject());
+        driverButton4.whenPressed(new RetractEjector());
 
-        AimArm Cargo1 = new AimArm(RobotMap.Cargo1, true);
-        AimArm Cargo2 = new AimArm(RobotMap.Cargo2, true);
-        AimArm Cargo3 = new AimArm(RobotMap.Cargo3, true);
-        AimArm Hatch1 = new AimArm(RobotMap.HatchPanel1, false);
-        AimArm Hatch2 = new AimArm(RobotMap.HatchPanel2, false);
-        AimArm Hatch3 = new AimArm(RobotMap.HatchPanel3, false);
-        
         // // Operator Controls
         operatorButton1.whileHeld(new RaiseArm());
         operatorButton2.whileHeld(new LowerArm());
-        operatorButton3.whenPressed(Cargo1);
-        operatorButton4.whenPressed(Cargo2);
-        operatorButton5.whenPressed(Cargo3);
-        operatorButton6.whenPressed(Hatch1);
-        operatorButton7.whenPressed(Hatch2);
+        operatorButton3.whenPressed(new AimArm(RobotMap.Cargo1, true));
+        operatorButton4.whenPressed(new AimArm(RobotMap.Cargo2, true));
+        operatorButton5.whenPressed(new AimArm(RobotMap.Cargo3, true));
+        operatorButton8.whenPressed(new AimArm(RobotMap.HatchPanel1, false));
+        operatorButton9.whenPressed(new AimArm(RobotMap.HatchPanel2, false));
+        operatorButton10.whenPressed(new AimArm(RobotMap.HatchPanel3, false));
 
         // // SmartDashboard Buttons
-        // SmartDashboard.putData("Autonomous Command", new AutonomousCommand());
-        // SmartDashboard.putData("GrabCargo", new GrabCargo());
-        // SmartDashboard.putData("RaiseArm", new RaiseArm());
-        // SmartDashboard.putData("ExtendLegs", new ExtendAllLegs());
-        // SmartDashboard.putData("RetractFrontLegs", new RetractFrontLegs());
-        // SmartDashboard.putData("RetractRearLegs", new RetractRearLegs());
-        SmartDashboard.putData("ARM/Cargo_Level 1", Cargo1);
-        SmartDashboard.putData("ARM/Cargo_Level 2", Cargo2);
-        SmartDashboard.putData("ARM/Hatch_Level_1", Hatch1);
-        SmartDashboard.putData("ARM/Hatch_Level_2", Hatch2);
-        SmartDashboard.putData("ARM/Hatch_Level_3", Hatch3);
-        SmartDashboard.putData("ARM/Cargo_Level 3", Cargo3);
+        SmartDashboard.putData("Autonomous Command", new AutonomousCommand());
+        SmartDashboard.putData("GrabCargo", new GrabCargo());
+        SmartDashboard.putData("RaiseArm", new RaiseArm());
+        SmartDashboard.putData("ExtendLegs", new ExtendAllLegs());
+        SmartDashboard.putData("RetractFrontLegs", new RetractFrontLegs());
+        SmartDashboard.putData("RetractRearLegs", new RetractRearLegs());
+        SmartDashboard.putData("ARM/Zero", new AimArm(0.0, true));
+        SmartDashboard.putData("ARM/Cargo_Level 1", new AimArm(RobotMap.Cargo1, true));
+        SmartDashboard.putData("ARM/Cargo_Level 2", new AimArm(RobotMap.Cargo2, true));
+        SmartDashboard.putData("ARM/Cargo_Level_3", new AimArm(RobotMap.Cargo3, true));
+        SmartDashboard.putData("ARM/Hatch_Level_1", new AimArm(RobotMap.HatchPanel1, false));
+        SmartDashboard.putData("ARM/Hatch_Level_2", new AimArm(RobotMap.HatchPanel2, false));
+        SmartDashboard.putData("ARM/Hatch_Level_3", new AimArm(RobotMap.HatchPanel3, false));
     }
 
     public Joystick getdriverJoystick() {
-        return driverJoystick;    }
+        return driverJoystick;    
+    }
+
+    public Joystick getOperatorJoystick() {
+        return operatorJoystick;
+    }
 }
