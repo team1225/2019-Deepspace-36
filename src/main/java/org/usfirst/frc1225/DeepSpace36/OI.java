@@ -93,7 +93,11 @@ public class OI {
         // // SmartDashboard Buttons
         SmartDashboard.putData("Autonomous Command", new AutonomousCommand());
         SmartDashboard.putData("GrabCargo", new GrabCargo());
+        SmartDashboard.putData("ShootCargo", new ShootCargo());
+        SmartDashboard.putData("EjectHatch", new Eject());
+        SmartDashboard.putData("RetractEjector", new RetractEjector());
         SmartDashboard.putData("RaiseArm", new RaiseArm());
+        SmartDashboard.putData("Lower Arm", new LowerArm());
         SmartDashboard.putData("ExtendLegs", new ExtendAllLegs());
         SmartDashboard.putData("RetractFrontLegs", new RetractFrontLegs());
         SmartDashboard.putData("RetractRearLegs", new RetractRearLegs());
